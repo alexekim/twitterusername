@@ -41,7 +41,7 @@ class TwitterTextArea extends Component {
     this.setState({ allowXHR: true});
     console.log(3, "setTimeout is done, allowXHR is now TRUE");
   }
-  3
+  handleChange(e) {
     var currentText = e.target.value; // this is the entire value of textarea
     this.setState({
       allowXHR: false,
