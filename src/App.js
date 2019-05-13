@@ -38,11 +38,14 @@ class TwitterTextArea extends Component {
     this.allowXHR = this.allowXHR.bind(this);
   }
   allowXHR(){
+    //END DEBOUNCE
     this.setState({ allowXHR: true});
     console.log(3, "setTimeout is done, allowXHR is now TRUE");
   }
   handleChange(e) {
     var currentText = e.target.value; // this is the entire value of textarea
+
+    //DEBOUNCE
     this.setState({
       allowXHR: false,
 
@@ -51,7 +54,7 @@ class TwitterTextArea extends Component {
     });
     console.log(1, "setState allowXHR FALSE");
     console.log(2, "setTimeout to allowXHR TRUE in .5 seconds...");
-    setTimeout(this.allowXHR, 300);
+    setTimeout(this.allowXHR, 250);
 
     var currentTextArray = currentText.split(" ");
     // going to split(" ") by each word
@@ -62,7 +65,7 @@ class TwitterTextArea extends Component {
       if (/[a-zA-Z0-9]/.test(currentTextArray[i].charAt(1)) && /^(@)/.test(currentTextArray[i]) && currentTextArray[i].length >= 3 && currentTextArray[i].charAt(currentTextArray[i].length) != " ") {
 
 
-
+        //dependent on state based debounce
         if(this.state.allowXHR){
           this.setState({loading: true});
           // if first character is @ and second character is letter or number
