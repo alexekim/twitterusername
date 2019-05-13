@@ -6,6 +6,7 @@ import './App.css';
 import Suggestion from './Suggestion';
 import Loading from './Loading';
 import Submit from './Submit';
+import Header from './Header';
 
 class TwitterTextArea extends Component {
   constructor(props) {
@@ -27,7 +28,8 @@ class TwitterTextArea extends Component {
          //    {"screen_name": "SproutSupport", "profile_image_url": "support.jpg"}
          // ]
        },
-       loading: false
+       loading: false,
+       allowXHR: true
 
     };
 
@@ -47,6 +49,11 @@ class TwitterTextArea extends Component {
 
 
       if (/[a-zA-Z0-9]/.test(currentTextArray[i].charAt(1)) && /^(@)/.test(currentTextArray[i]) && currentTextArray[i].length >= 3 && currentTextArray[i].charAt(currentTextArray[i].length) != " ") {
+
+
+
+
+
 
         this.setState({loading: true});
         // if first character is @ and second character is letter or number
@@ -114,6 +121,7 @@ class TwitterTextArea extends Component {
     var currentTextArrayJoined = currentTextArray.join(" ");
     console.log(8, currentTextArrayJoined);
     document.getElementById("tweetTextarea").value = currentTextArrayJoined;
+    document.getElementById("tweetTextarea").focus();
     this.setState({ currentText: currentTextArrayJoined });
 
   }
@@ -141,24 +149,27 @@ class TwitterTextArea extends Component {
 
 
     return (
-      <div id="tweetContainer" className="row">
-        <div id="tweetTextareaDiv" className="col s12">
-          <textarea
-            type="text"
-            id="tweetTextarea"
-            onChange={this.handleChange}
-            autoFocus="autoFocus"
-            maxLength="280">
+      <div id="app">
+        <Header/>
+        <div id="tweetContainer" className="row">
+          <div id="tweetTextareaDiv" className="col s12">
+            <textarea
+              type="text"
+              id="tweetTextarea"
+              onChange={this.handleChange}
+              autoFocus="autoFocus"
+              maxLength="280">
 
-            </textarea>
-            <p id="charLeft">{this.state.charactersLeft}</p>
-            <Submit />
+              </textarea>
+              <p id="charLeft">{this.state.charactersLeft}</p>
+              <Submit />
+            </div>
+            <Loading loading={this.state.loading}/>
+            <div>
+              <div id="displaySuggestions">{displaySuggestions}</div>
+            </div>
           </div>
-          <Loading loading={this.state.loading}/>
-          <div>
-            <div id="displaySuggestions">{displaySuggestions}</div>
-          </div>
-        </div>);
+      </div>);
       }
     }
 

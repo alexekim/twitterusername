@@ -1,5 +1,5 @@
 <!-- # Sprout Social Applicant Homework -->
-#Twitter UserName AutoSuggest
+# Twitter UserName AutoSuggest
 
 ## Environment Dependencies:
 

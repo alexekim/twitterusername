@@ -8,6 +8,7 @@ class Suggestion extends React.Component {
       displaying: true
     }
     this.handleClick = this.handleClick.bind(this);
+    this.handleKeyUp = this.handleKeyUp.bind(this);
   }
   // componentWillUpdate(){
   //   if(this.state.selected == true){
@@ -16,7 +17,11 @@ class Suggestion extends React.Component {
   //     });
   //   }
   // }
-
+  handleKeyUp(e){
+    if (e.keyCode == (13 || 32)) {
+      this.handleClick(e);
+    }
+  }
   handleClick(e){
     // console.warn(e);
     var name = this.props.screen_name;
@@ -34,8 +39,8 @@ class Suggestion extends React.Component {
   render(){
     if( this.state.displaying == true){
       return(
-        <div className="suggestion" tabIndex="0" id={this.props.screen_name} onClick={this.handleClick}>
-          <img className="suggestionContent thumbnail" src={this.props.src}/>
+        <div className="suggestion" tabIndex="0" id={this.props.screen_name} onClick={this.handleClick} onKeyUp={this.handleKeyUp}>
+          <img className="suggestionContent thumbnail" src={this.props.src} alt={this.props.screen_name + " profile thumbnail"} title={this.props.screen_name + " profile thumbnail"} />
           <strong className="suggestionContent">{this.props.name}&nbsp;</strong>
           {this.props.verified ?
             <img className="verified suggestionContent"
