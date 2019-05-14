@@ -176,14 +176,13 @@ class TwitterTextArea extends Component {
               type="text"
               id="tweetTextarea"
               onChange={this.handleChange}
-              autoFocus="autoFocus"
               maxLength="280">
-
               </textarea>
               <p id="charLeft">{this.state.charactersLeft}</p>
               <Submit />
             </div>
             <Loading loading={this.state.loading}/>
+
             <div>
               <div id="displaySuggestions">{displaySuggestions}</div>
             </div>

@@ -41,12 +41,12 @@ class Suggestion extends React.Component {
       return(
         <div className="suggestion" tabIndex="0" id={this.props.screen_name} onClick={this.handleClick} onKeyUp={this.handleKeyUp} role="option">
           <img className="suggestionContent thumbnail" src={this.props.src} alt={this.props.screen_name + " profile thumbnail"} title={this.props.screen_name + " profile thumbnail"} />
-          <p className="suggestionContent"><strong>&nbsp;{this.props.name}&nbsp;</strong></p>
+          <p className="suggestionContent"><strong> {this.props.name} </strong></p>
           {this.props.verified ?
             <img className="verified suggestionContent"
             src="https://i.ibb.co/WcBj34B/verified.png" alt="Verified Account Indicator" title="Verified Account Indicator"/>
             : <p className="suggestionContent"></p>}
-          <p className="suggestionContent">@{this.props.screen_name}</p>
+          <p className="suggestionContent"> @{this.props.screen_name}</p>
         </div>
       )
     }
