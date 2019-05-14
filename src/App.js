@@ -32,38 +32,29 @@ class TwitterTextArea extends Component {
        allowXHR: true
 
     };
+
     this.handleChange = this.handleChange.bind(this);
     this.handleSelect = this.handleSelect.bind(this);
     this.allowXHR = this.allowXHR.bind(this);
   }
   allowXHR(){
     //END DEBOUNCE
-    var text = document.getElementById("tweetTextarea").value;
-    // console.log(text);
     this.setState({ allowXHR: true});
-    // this.handleChange("",text);
     console.log(3, "setTimeout is done, allowXHR is now TRUE");
   }
-  handleChange(e, redone) {
-    // var currentText = e.target.value; // this is the entire value of textarea
-    var currentText = ""; // this is the entire value of textarea
-    e ? currentText = e.target.value : currentText = redone;
-    // if (e){
-    //   currentText = e.target.value;
-    // } else { e=e;  }
-    console.log("eh?", currentText);
+  handleChange(e) {
+    var currentText = e.target.value; // this is the entire value of textarea
 
     //DEBOUNCE
     this.setState({
+      allowXHR: false,
+
       currentInput: currentText,
       charactersLeft: 280 - currentText.length
     });
-    this.setState({ allowXHR: false });
     console.log(1, "setState allowXHR FALSE");
     console.log(2, "setTimeout to allowXHR TRUE in .5 seconds...");
-
-
-    setTimeout(this.allowXHR, 300);
+    setTimeout(this.allowXHR, 250);
 
     var currentTextArray = currentText.split(" ");
     // going to split(" ") by each word
@@ -74,24 +65,16 @@ class TwitterTextArea extends Component {
       if (/[a-zA-Z0-9]/.test(currentTextArray[i].charAt(1)) && /^(@)/.test(currentTextArray[i]) && currentTextArray[i].length >= 3 && currentTextArray[i].charAt(currentTextArray[i].length) != " ") {
 
 
-
-        let cleanSearch = currentTextArray[i].slice(1);
-        this.setState({ currentSearch: cleanSearch });
-        //MOVING THIS OUT OF THE LOWER IF STATEMENT MAKES SURE THAT THE CURRENT SEARCH IS UPDATED, WITHOUT MAKING XHR REQUESTS TOO OFTEN
-
-
-
         //dependent on state based debounce
         if(this.state.allowXHR){
           this.setState({loading: true});
-          // if first character is @ and second character is letter or number, continue search
-
-          // let cleanSearch = currentTextArray[i].slice(1); // just getting rid of the @ sign for search
-          // this.setState({ currentSearch: cleanSearch })  //MOVING THIS UP
+          // if first character is @ and second character is letter or number
+          //continue search
+          let cleanSearch = currentTextArray[i].slice(1); // just getting rid of the @ sign for search
+          this.setState({ currentSearch: cleanSearch })
 
           // CHECKING IF WE ALREADY HAVE SEARCHED THIS
-          if ( !Boolean(this.state.prevSearches[this.state.currentSearch]) ) {
-            // never been searched before
+          if ( !Boolean(this.state.prevSearches[cleanSearch]) ) {
               // let's search for it now
               // then get the results and store it in THIS.STATE
               // then we're going to put that shit on the page.
@@ -100,7 +83,6 @@ class TwitterTextArea extends Component {
               var results = [];
               axios.get("http://localhost:4000/twitter/user/search?username=" + cleanSearch)
               .then(res => {
-                console.log("AXIOSFIRING", cleanSearch);
                 // console.log(res.data.users);
                 const allUsers = res.data.users;
                 const sixSuggestions = allUsers.slice(0, 6);
@@ -118,14 +100,18 @@ class TwitterTextArea extends Component {
                 this.setState({ prevSearches : thisstateprevSearches, loading: false});  // setting state to pseudo object
 
               }) // END AXIOS CALL
-          } else { // this has been searched before
+          } else {
+            this.setState({loading: false});
             console.log("a: this already has been searched");
             console.log("b:so let's query this information");
-            this.setState({loading: false});
           }
         } else {
-          console.warn("can't do XHR yet", cleanSearch); //because debounce is happening
+          console.warn("can't do XHR yet");
         }
+
+
+
+
 
       } else {
         // this is just a normal word being typed. NOT a tag
@@ -184,8 +170,8 @@ class TwitterTextArea extends Component {
     return (
       <div id="app">
         <Header/>
-        <div id="tweetContainer">
-          <div id="tweetTextareaDiv">
+        <div id="tweetContainer" className="row">
+          <div id="tweetTextareaDiv" className="col s12">
             <textarea
               type="text"
               id="tweetTextarea"
@@ -199,7 +185,7 @@ class TwitterTextArea extends Component {
             </div>
             <Loading loading={this.state.loading}/>
             <div>
-              <div id="displaySuggestions" role="listbox">{displaySuggestions}</div>
+              <div id="displaySuggestions">{displaySuggestions}</div>
             </div>
           </div>
       </div>);
