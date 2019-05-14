@@ -15,7 +15,7 @@ class Loading extends React.Component {
     }
     return (
       <div>
-        <img style={style} src="https://www.lung.org/images/spinner.gif"/>
+        <img style={style} src="https://www.lung.org/images/spinner.gif" alt="loading indicator" title="loading indicator" />
         {/*}<img style={this.props.loading ? {displayYes}: {displayNo}} src="https://www.lung.org/images/loading.gif"/>*/}
       </div>
     )

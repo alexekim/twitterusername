@@ -7,6 +7,7 @@ body {
 #header{
   max-width: 980px;
   margin: 0 auto;
+  padding: 10px;
 }
 
 #bird{
@@ -16,6 +17,7 @@ body {
 #tweetContainer {
   /* width: 500px; */
   max-width: 980px;
+  margin: 0 auto;
 }
 
 #tweetTextareaDiv {
@@ -57,7 +59,7 @@ body {
 
 #displaySuggestions{
   /* ul */
-
+  max-width: 500px;
 }
 .suggestion {
   /* li */
@@ -67,17 +69,18 @@ body {
 
 .suggestion:hover {
   cursor: pointer;
-  /* background: rgb(195, 239, 255); */
+  background: rgb(195, 239, 255);
   font-size: 18px;
 }
 .suggestion:focus {
   cursor: pointer;
-  /* background: rgb(195, 239, 255); */
+  background: rgb(195, 239, 255);
   font-size: 18px;
 }
 
 .suggestionContent {
   display: inline;
+  vertical-align: middle;
 }
 
 .thumbnail {
@@ -100,4 +103,5 @@ body {
   font-size: 13px;
   font-weight: bold;
   width: 87px;
+  z-index: -1;
 }
