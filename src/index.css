@@ -70,12 +70,10 @@ body {
 .suggestion:hover {
   cursor: pointer;
   background: rgb(195, 239, 255);
-  font-size: 18px;
 }
 .suggestion:focus {
   cursor: pointer;
   background: rgb(195, 239, 255);
-  font-size: 18px;
 }
 
 .suggestionContent {

@@ -54,21 +54,16 @@ class TwitterTextArea extends Component {
     console.log("eh?", currentText);
 
     //DEBOUNCE
-    // let counter = 0;
     this.setState({
-      allowXHR: false,
-
       currentInput: currentText,
       charactersLeft: 280 - currentText.length
     });
+    this.setState({ allowXHR: false });
     console.log(1, "setState allowXHR FALSE");
     console.log(2, "setTimeout to allowXHR TRUE in .5 seconds...");
-    // if (counter == 0) { //idea is to allowXHR the first time.
-    //
-    // }
-    // counter++;
 
-    setTimeout(this.allowXHR, 200);
+
+    setTimeout(this.allowXHR, 300);
 
     var currentTextArray = currentText.split(" ");
     // going to split(" ") by each word
@@ -129,12 +124,8 @@ class TwitterTextArea extends Component {
             this.setState({loading: false});
           }
         } else {
-          console.warn("can't do XHR yet"); //because debounce is happening
+          console.warn("can't do XHR yet", cleanSearch); //because debounce is happening
         }
-
-
-
-
 
       } else {
         // this is just a normal word being typed. NOT a tag
