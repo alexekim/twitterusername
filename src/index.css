@@ -106,7 +106,7 @@ body {
 
 #submit {
   position: absolute;
-  bottom: -23%;
+  bottom: -31%;
   right: 9%;
   background: #91B5C2;
   padding: 10px;
@@ -114,6 +114,7 @@ body {
   color: #fff;
   font-size: 13px;
   font-weight: bold;
-  width: 87px;
+  width: 72px;
   z-index: -1;
+  text-align: center;
 }

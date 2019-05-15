@@ -40,7 +40,7 @@ class TwitterTextArea extends Component {
   allowXHR(){
     //END DEBOUNCE
     this.setState({ allowXHR: true});
-    console.log(3, "setTimeout is done, allowXHR is now TRUE");
+    // console.log(2, "setTimeout is done, allowXHR is now TRUE");
   }
   handleChange(e) {
     var currentText = e.target.value; // this is the entire value of textarea
@@ -52,8 +52,8 @@ class TwitterTextArea extends Component {
       currentInput: currentText,
       charactersLeft: 280 - currentText.length
     });
-    console.log(1, "setState allowXHR FALSE");
-    console.log(2, "setTimeout to allowXHR TRUE in .5 seconds...");
+    // console.log(1, "setState allowXHR FALSE: ");
+    // console.log(2, "setTimeout to allowXHR TRUE in .5 seconds...");
     setTimeout(this.allowXHR, 250);
 
     var currentTextArray = currentText.split(" ");
@@ -63,7 +63,7 @@ class TwitterTextArea extends Component {
 
 
       if (/[a-zA-Z0-9]/.test(currentTextArray[i].charAt(1)) && /^(@)/.test(currentTextArray[i]) && currentTextArray[i].length >= 3 && currentTextArray[i].charAt(currentTextArray[i].length) != " ") {
-        
+
         let cleanSearch = currentTextArray[i].slice(1); // just getting rid of the @ sign for search
         this.setState({ currentSearch: cleanSearch })
 
@@ -79,11 +79,11 @@ class TwitterTextArea extends Component {
               // let's search for it now
               // then get the results and store it in THIS.STATE
               // then we're going to put that shit on the page.
-              console.log("1 this has never been searched before");
-              console.log("2 new search!", cleanSearch);
+              console.log("1", cleanSearch ,"has never been searched before");
               var results = [];
               axios.get("/twitter/user/search?username=" + cleanSearch)
               .then(res => {
+                console.warn("AAAA", this.state.currentSearch, "was AXIOSed");
                 // console.log(res.data.users);
                 const allUsers = res.data.users;
                 const sixSuggestions = allUsers.slice(0, 6);
@@ -103,11 +103,10 @@ class TwitterTextArea extends Component {
               }) // END AXIOS CALL
           } else {
             this.setState({loading: false});
-            console.log("a: this already has been searched");
-            console.log("b:so let's query this information");
+            console.log("a:", cleanSearch, " has already has been searched. now checking state for info we already have.");
           }
         } else {
-          console.warn("can't do XHR yet", );
+          console.warn("BBBB can't do XHR yet", cleanSearch, "didnt get searched.");
         }
 
 
@@ -177,7 +176,8 @@ class TwitterTextArea extends Component {
               type="text"
               id="tweetTextarea"
               onChange={this.handleChange}
-              maxLength="280">
+              maxLength="280"
+              tabIndex="0">
               </textarea>
               <p id="charLeft">{this.state.charactersLeft}</p>
               <Submit />
