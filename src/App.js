@@ -66,24 +66,26 @@ class TwitterTextArea extends Component {
 
         let cleanSearch = currentTextArray[i].slice(1); // just getting rid of the @ sign for search
         this.setState({ currentSearch: cleanSearch })
-
+        console.log(1, cleanSearch, "is a valid search");
 
         //dependent on state based debounce
-        if(this.state.allowXHR){
-          this.setState({loading: true});
-          // if first character is @ and second character is letter or number
-          //continue search
 
           // CHECKING IF WE ALREADY HAVE SEARCHED THIS
           if ( !Boolean(this.state.prevSearches[cleanSearch]) ) {
-              // let's search for it now
-              // then get the results and store it in THIS.STATE
-              // then we're going to put that shit on the page.
-              console.log("1", cleanSearch ,"has never been searched before");
+            // let's search for it now
+            // then get the results and store it in THIS.STATE
+            // then we're going to put that shit on the page.
+            console.log("2A and it,", cleanSearch, " has never been searched before");
+            if(this.state.allowXHR){
+              this.setState({loading: true});
+              // if first character is @ and second character is letter or number
+              //continue search
+
               var results = [];
+              console.warn("3A: and XHR is allowed right now. about to do AXIOS with:", cleanSearch);
+
               axios.get("/twitter/user/search?username=" + cleanSearch)
               .then(res => {
-                console.warn("AAAA", this.state.currentSearch, "was AXIOSed");
                 // console.log(res.data.users);
                 const allUsers = res.data.users;
                 const sixSuggestions = allUsers.slice(0, 6);
@@ -101,13 +103,15 @@ class TwitterTextArea extends Component {
                 this.setState({ prevSearches : thisstateprevSearches, loading: false});  // setting state to pseudo object
 
               }) // END AXIOS CALL
+
+            } else {
+              console.warn("3B: but we can't do XHR yet:", cleanSearch, "did NOT get searched.");
+            }
           } else {
             this.setState({loading: false});
-            console.log("a:", cleanSearch, " has already has been searched. now checking state for info we already have.");
+            console.log("@2B", cleanSearch, " and it has already has been searched. now checking state for info we already have.");
           }
-        } else {
-          console.warn("BBBB can't do XHR yet", cleanSearch, "didnt get searched.");
-        }
+
 
 
 
