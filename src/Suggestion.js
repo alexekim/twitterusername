@@ -34,8 +34,18 @@ class Suggestion extends React.Component {
   render(){
     if( this.state.displaying === true){
       return(
-        <div className="suggestion" tabIndex="0" id={this.props.screen_name} onClick={this.handleClick} onKeyUp={this.handleKeyUp} role="option">
-          <img className="suggestionContent thumbnail" src={this.props.src} alt={this.props.screen_name + " profile thumbnail"} title={this.props.screen_name + " profile thumbnail"} />
+        <div
+          className="suggestion"
+          tabIndex="0"
+          id={this.props.screen_name}
+          onClick={this.handleClick}
+          onKeyUp={this.handleKeyUp}
+          role="option">
+          <img
+            className="suggestionContent thumbnail"
+            src={this.props.src}
+            alt={this.props.screen_name + " profile thumbnail"}
+            title={this.props.screen_name + " profile thumbnail"} />
           <div className="suggestionContent">
             <p className="suggestionContent"><strong> {this.props.name} </strong></p>
             {this.props.verified ?

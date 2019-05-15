@@ -15,25 +15,19 @@ body {
 }
 
 #tweetContainer {
-  /* width: 500px; */
   max-width: 980px;
   margin: 0 auto;
 }
 
 #tweetTextareaDiv {
   position: relative;
-  /* max-width: 500px; */
 }
 
 #tweetTextarea {
   width: 90%;
-  /* position: relative; */
   resize: none;
-  /* width: 98%; */
   height: 100px;
-  /* min-width: 300px; */
   margin: 10px;
-  /* margin: 0 auto; */
   background-color: #fff;
   border: 1px solid #91B5C2;
   border-radius: 10px;
@@ -74,7 +68,6 @@ body {
   /* li */
   list-style: none;
   background: white;
-  /* vertical-align: middle; */
   padding: 5px;
 
 }

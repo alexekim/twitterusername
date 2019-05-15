@@ -17,15 +17,6 @@ class TwitterTextArea extends Component {
       charactersLeft: 280,
 
       prevSearches : {
-         // "example" : [
-         //   {"screen_name": "Example1", "profile_image_url": "1.jpg"},
-         //   {"screen_name": "Example2", "profile_image_url": "2.jpg"},
-         //   {"screen_name": "Example3", "profile_image_url": "3.jpg"},
-         //   {"screen_name": "Example4", "profile_image_url": "4.jpg"},
-         //   {"screen_name": "Example5", "profile_image_url": "5.jpg"},
-         //   {"screen_name": "Example6", "profile_image_url": "6.jpg"}
-         // ]
-         // ,
          // "sprout" : [
          //    {"screen_name": "SproutSocial", "profile_image_url": "sprout.jpg"},
          //    {"screen_name": "SproutSupport", "profile_image_url": "support.jpg"}
