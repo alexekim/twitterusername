@@ -73,9 +73,10 @@
 3. **Design**
   - Mostly copies modern twitter
   - modern twitter is nuts. the place to type a tweet is incredibly complicated. not even a textarea! which is how they style the `@tags` differently
+  - made to be mobile friendly with `font-size: 16px` textarea which prevents mobile browser zoom, and media queries that adjust the size of the suggestions so that they are easier to access on mobile as well.
 
 4. **Keyboard Navigation**
-   - Suggestions are given keyboard functionality. The mouse does not have to be used at all.
+   - Suggestions are given keyboard functionality via Tab/Enter. The mouse does not have to be used at all.
 
 5. **Characters Remaining**
   - `this.state.charactersLeft` starts at `280` and each time `handleChange()` is called, the characters update.

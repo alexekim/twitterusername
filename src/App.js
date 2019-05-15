@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-// import debounce from 'lodash/debounce';
 import axios from 'axios';
 // import logo from './logo.svg';
 import './App.css';
@@ -67,7 +66,7 @@ class TwitterTextArea extends Component {
     for (var i = 0; i < currentTextArray.length; i++) {
 
 
-      if (/[a-zA-Z0-9_]/.test(currentTextArray[i].charAt(1)) && /^(@)/.test(currentTextArray[i]) && currentTextArray[i].length >= 3 && currentTextArray[i].charAt(currentTextArray[i].length) != " ") {
+      if (/[a-zA-Z0-9_]/.test(currentTextArray[i].charAt(1)) && /^(@)/.test(currentTextArray[i]) && currentTextArray[i].length >= 3 && currentTextArray[i].charAt(currentTextArray[i].length) !== " ") {
 
         let cleanSearch = currentTextArray[i].slice(1); // just getting rid of the @ sign for search
         this.setState({ currentSearch: cleanSearch, searchingNow: true })
@@ -139,7 +138,7 @@ class TwitterTextArea extends Component {
     for (var i = 0; i < currentTextArray.length; i++) {
       console.log(3, currentTextArray[i]);
       console.log(4, "@"+this.state.currentSearch);
-      if( currentTextArray[i] == ("@"+this.state.currentSearch) ){
+      if( currentTextArray[i] === ("@"+this.state.currentSearch) ){
         console.log(5, name);
         var newversion = "@"+name+" ";
         console.log(6, newversion);
