@@ -1,0 +1,119 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Helvetica Neue", sans-serif;
+  background: #f1ecec;
+}
+#header{
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 10px;
+}
+
+#bird{
+  color: #1da1f2;
+}
+
+#tweetContainer {
+  /* width: 500px; */
+  max-width: 980px;
+  margin: 0 auto;
+}
+
+#tweetTextareaDiv {
+  position: relative;
+  /* max-width: 500px; */
+}
+
+#tweetTextarea {
+  width: 90%;
+  /* position: relative; */
+  resize: none;
+  /* width: 98%; */
+  height: 100px;
+  /* min-width: 300px; */
+  margin: 10px;
+  /* margin: 0 auto; */
+  background-color: #fff;
+  border: 1px solid #91B5C2;
+  border-radius: 10px;
+  font-size: 14px;
+  padding-top: 4px;
+  padding-left: 4px;
+  outline: none;
+}
+#tweetTextarea:focus{
+  border: 3px solid #91B5C2;
+  margin: 8px;
+}
+
+#charLeft {
+  position: absolute;
+  bottom: 5%;
+  right: 10%;
+  font-size: 12px;
+}
+
+.showw {
+  display: block;
+}
+
+.hidee {
+  display: none;
+}
+
+#displaySuggestions{
+  /* ul */
+  max-width: 500px;
+  position: absolute;
+  top: 225px;
+  margin-left: 20px;
+  box-shadow: 7px 7px 10px -7px;
+}
+.suggestion {
+  /* li */
+  list-style: none;
+  background: white;
+  /* vertical-align: middle; */
+  padding: 5px;
+
+}
+
+.suggestion:hover {
+  text-decoration: underline;
+  cursor: pointer;
+  background: rgb(195, 239, 255);
+}
+.suggestion:focus {
+  text-decoration: underline;
+  cursor: pointer;
+  background: rgb(195, 239, 255);
+}
+
+.suggestionContent {
+  display: inline;
+  vertical-align: middle;
+}
+
+.thumbnail {
+  border: 1px solid #ffffff00;
+  border-radius: 25px;
+}
+
+.verified {
+  width: 15px;
+}
+
+#submit {
+  position: absolute;
+  bottom: -23%;
+  right: 9%;
+  background: #91B5C2;
+  padding: 10px;
+  border-radius: 26px;
+  color: #fff;
+  font-size: 13px;
+  font-weight: bold;
+  width: 87px;
+  z-index: -1;
+}
