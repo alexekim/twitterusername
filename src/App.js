@@ -49,7 +49,7 @@ class TwitterTextArea extends Component {
     });
     // console.log(1, "setState allowXHR FALSE: ");
     // console.log(2, "setTimeout to allowXHR TRUE in .5 seconds...");
-    setTimeout(this.allowXHR, 250);
+    setTimeout(this.allowXHR, 200);
 
     var currentTextArray = currentText.split(" ");
     // going to split(" ") by each word
