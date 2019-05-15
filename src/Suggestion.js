@@ -18,7 +18,7 @@ class Suggestion extends React.Component {
   //   }
   // }
   handleKeyUp(e){
-    if (e.keyCode == (13 || 32)) {
+    if (e.keyCode === (13 || 32)) {
       this.handleClick(e);
     }
   }

@@ -18,9 +18,13 @@ class TwitterTextArea extends Component {
       charactersLeft: 280,
 
       prevSearches : {
-         // "da" : [
-         //   {"screen_name": "Dan", "profile_image_url": "dan.jpg"},
-         //   {"screen_name": "David", "profile_image_url": "david.jpg"}
+         // "example" : [
+         //   {"screen_name": "Example1", "profile_image_url": "1.jpg"},
+         //   {"screen_name": "Example2", "profile_image_url": "2.jpg"},
+         //   {"screen_name": "Example3", "profile_image_url": "3.jpg"},
+         //   {"screen_name": "Example4", "profile_image_url": "4.jpg"},
+         //   {"screen_name": "Example5", "profile_image_url": "5.jpg"},
+         //   {"screen_name": "Example6", "profile_image_url": "6.jpg"}
          // ]
          // ,
          // "sprout" : [
@@ -29,6 +33,7 @@ class TwitterTextArea extends Component {
          // ]
        },
        loading: false,
+       searchingNow: false,
        allowXHR: true
 
     };
@@ -62,10 +67,10 @@ class TwitterTextArea extends Component {
     for (var i = 0; i < currentTextArray.length; i++) {
 
 
-      if (/[a-zA-Z0-9]/.test(currentTextArray[i].charAt(1)) && /^(@)/.test(currentTextArray[i]) && currentTextArray[i].length >= 3 && currentTextArray[i].charAt(currentTextArray[i].length) != " ") {
+      if (/[a-zA-Z0-9_]/.test(currentTextArray[i].charAt(1)) && /^(@)/.test(currentTextArray[i]) && currentTextArray[i].length >= 3 && currentTextArray[i].charAt(currentTextArray[i].length) != " ") {
 
         let cleanSearch = currentTextArray[i].slice(1); // just getting rid of the @ sign for search
-        this.setState({ currentSearch: cleanSearch })
+        this.setState({ currentSearch: cleanSearch, searchingNow: true })
         console.log(1, cleanSearch, "is a valid search");
 
         //dependent on state based debounce
@@ -100,16 +105,17 @@ class TwitterTextArea extends Component {
                 }
                 var thisstateprevSearches = this.state.prevSearches; //creating pseuedo object
                 thisstateprevSearches[cleanSearch] = results;  // adding to that pseudo object
-                this.setState({ prevSearches : thisstateprevSearches, loading: false});  // setting state to pseudo object
+                this.setState({ prevSearches : thisstateprevSearches, loading: false, searchingNow: false});  // setting state to pseudo object
 
               }) // END AXIOS CALL
 
             } else {
               console.warn("3B: but we can't do XHR yet:", cleanSearch, "did NOT get searched.");
+              this.setState({searchingNow: false})
             }
           } else {
-            this.setState({loading: false});
-            console.log("@2B", cleanSearch, " and it has already has been searched. now checking state for info we already have.");
+            this.setState({loading: false, searchingNow: false});
+            console.log("@2B", cleanSearch, " and it has already has been searched. now checking state for info we already have. no XHR request needed!");
           }
 
 
@@ -135,7 +141,7 @@ class TwitterTextArea extends Component {
       console.log(4, "@"+this.state.currentSearch);
       if( currentTextArray[i] == ("@"+this.state.currentSearch) ){
         console.log(5, name);
-        var newversion = "@"+name+" "
+        var newversion = "@"+name+" ";
         console.log(6, newversion);
         currentTextArray[i] = newversion;
         console.log(7, currentTextArray[i]);
@@ -145,7 +151,7 @@ class TwitterTextArea extends Component {
     console.log(8, currentTextArrayJoined);
     document.getElementById("tweetTextarea").value = currentTextArrayJoined;
     document.getElementById("tweetTextarea").focus();
-    this.setState({ currentText: currentTextArrayJoined });
+    this.setState({ currentInput: currentTextArrayJoined, currentSearch: "" });
 
   }
   render() {
