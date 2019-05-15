@@ -83,6 +83,10 @@
 6. **WAI-ARIA attributes**
   - ADA roles are given to <div> elements that actually act as `<ul>` and `<li>` elements which would not be clear to a screen reader. However, these are not used throughout the application.
 
+6. **Testing**
+  - Added several tests. One for each components
+  - added to `/src/App.test.js` the ability for `<App/>` to render child components
+
 ## Notes
 
 - several comments and `console.log()`s are left behind for reference as to what the code is doing or what I was trying to figure out
